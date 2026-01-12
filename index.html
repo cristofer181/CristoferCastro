@@ -5,63 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historia Clínica</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 20px;
-      color: #333;
+    :root {
+      --primary: #1abc9c;
+      --secondary: #2c3e50;
+      --bg: #f2f5f9;
+      --card: #ffffff;
+      --text: #34495e;
+      --border: #dfe6e9;
     }
-    header {
-      background-color: #2e86de;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 8px;
-    }
-    section {
-      background-color: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #2e86de;
-      margin-bottom: 10px;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+
+    * {
       box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    form {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card);
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--secondary);
+      font-size: 20px;
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 15px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(26,188,156,0.2);
+    }
+
     textarea {
       resize: vertical;
-      height: 80px;
+      min-height: 90px;
     }
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      background-color: #2e86de;
-      color: white;
+
+    .btn {
+      width: 100%;
+      padding: 14px;
       border: none;
-      border-radius: 6px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: white;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.15);
     }
-    button:hover {
-      background-color: #2164a8;
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #7f8c8d;
     }
   </style>
 </head>
@@ -70,92 +135,114 @@
 
 <header>
   <h1>🩺 Historia Clínica del Paciente</h1>
+  <p>Registro médico – Fisioterapia</p>
 </header>
 
 <form>
 
-  <section>
+  <div class="card">
     <h2>👤 Datos del Paciente</h2>
+    <div class="grid">
+      <div>
+        <label>Nombre completo</label>
+        <input type="text" name="nombre" required>
+      </div>
 
-    <label>Nombre</label>
-    <input type="text" name="nombre" required>
+      <div>
+        <label>Cédula</label>
+        <input type="text" name="cedula" required>
+      </div>
 
-    <label>Número de cédula</label>
-    <input type="text" name="cedula" required>
+      <div>
+        <label>Fecha de nacimiento</label>
+        <input type="date" name="fecha_nacimiento">
+      </div>
 
-    <label>Fecha de nacimiento</label>
-    <input type="date" name="fecha_nacimiento">
+      <div>
+        <label>Edad</label>
+        <input type="number" name="edad" min="0">
+      </div>
 
-    <label>Edad</label>
-    <input type="number" name="edad" min="0">
+      <div>
+        <label>Género</label>
+        <select name="genero">
+          <option value="">Seleccione</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Otro</option>
+        </select>
+      </div>
 
-    <label>Género</label>
-    <select name="genero">
-      <option value="">Seleccione</option>
-      <option>Masculino</option>
-      <option>Femenino</option>
-      <option>Otro</option>
-    </select>
+      <div>
+        <label>Celular</label>
+        <input type="tel" name="celular">
+      </div>
 
-    <label>Celular</label>
-    <input type="tel" name="celular">
+      <div>
+        <label>Ocupación</label>
+        <input type="text" name="ocupacion">
+      </div>
 
-    <label>Ocupación</label>
-    <input type="text" name="ocupacion">
+      <div>
+        <label>Médico tratante</label>
+        <input type="text" name="medico">
+      </div>
+    </div>
+  </div>
 
-    <label>Médico tratante</label>
-    <input type="text" name="medico">
-  </section>
-
-  <section>
+  <div class="card">
     <h2>🩺 Diagnóstico Médico</h2>
     <label>Motivo de consulta</label>
-    <textarea name="motivo"></textarea>
+    <textarea></textarea>
 
     <label>Antecedentes personales</label>
-    <textarea name="antecedentes_personales"></textarea>
+    <textarea></textarea>
 
     <label>Antecedentes familiares</label>
-    <textarea name="antecedentes_familiares"></textarea>
-  </section>
+    <textarea></textarea>
+  </div>
 
-  <section>
+  <div class="card">
     <h2>📋 Historia de la Enfermedad Actual</h2>
     <label>Síntomas</label>
-    <textarea name="sintomas"></textarea>
+    <textarea></textarea>
 
     <label>Evaluación del dolor</label>
-    <textarea name="dolor"></textarea>
+    <textarea></textarea>
 
     <label>Ayudas técnicas</label>
-    <textarea name="ayudas"></textarea>
-  </section>
+    <textarea></textarea>
+  </div>
 
-  <section>
+  <div class="card">
     <h2>🧠 Evaluación Física</h2>
     <label>Postura</label>
-    <textarea name="postura"></textarea>
+    <textarea></textarea>
 
     <label>Marcha</label>
-    <textarea name="marcha"></textarea>
+    <textarea></textarea>
 
     <label>Equilibrio</label>
-    <textarea name="equilibrio"></textarea>
-  </section>
+    <textarea></textarea>
+  </div>
 
-  <section>
+  <div class="card">
     <h2>🧾 Diagnóstico Fisioterapéutico</h2>
-    <textarea name="diagnostico_fisio"></textarea>
-  </section>
+    <textarea></textarea>
+  </div>
 
-  <section>
+  <div class="card">
     <h2>💊 Tratamiento</h2>
-    <textarea name="tratamiento"></textarea>
-  </section>
+    <textarea></textarea>
+  </div>
 
-  <button type="submit">Guardar Historia Clínica</button>
+  <button class="btn" type="submit">💾 Guardar Historia Clínica</button>
 
 </form>
+
+<footer>
+  © Sistema de Historia Clínica – Fisioterapia
+</footer>
 
 </body>
 </html>
